@@ -33,21 +33,21 @@ View Layer: HTML / Thymeleaf (or JSP)
 
 External API: OMDb REST API
 
-📂 Project Structure
+Project Structure
 omdb-movie-explorer/
-│── src/
+├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── ... controller, service, model classes
 │   │   ├── resources/
-│   │   │   ├── templates/       # UI pages
-│   │   │   ├── static/          # JS, CSS
+│   │   │   ├── templates/        # UI pages
+│   │   │   ├── static/           # JS, CSS
 │   │   │   └── application.properties
-│── pom.xml
-│── mvnw
-│── mvnw.cmd
-│── README.md
-│── HELP.md
+├── pom.xml
+├── mvnw
+├── mvnw.cmd
+├── README.md
+├── HELP.md
 
 ⚙️ How to Run the Application
 1. Clone the Repository
