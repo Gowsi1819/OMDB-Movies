@@ -62,6 +62,10 @@ mvn clean install
 mvn spring-boot:run
 
 
+
+
+
+
 ```Project Structure
 omdb-movie-explorer/
 ├── src/
