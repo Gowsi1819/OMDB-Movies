@@ -33,8 +33,8 @@ View Layer: HTML / Thymeleaf (or JSP)
 
 External API: OMDb REST API
 
-Project Structure
-```omdb-movie-explorer/
+```Project Structure
+omdb-movie-explorer/
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -49,29 +49,3 @@ Project Structure
 ├── README.md
 └── HELP.md ```
 
-
-⚙️ How to Run the Application
-1. Clone the Repository
-git clone https://github.com/your-username/omdb-movie-explorer.git
-cd omdb-movie-explorer
-
-2. Add Your OMDb API Key
-
-Open:
-
-src/main/resources/application.properties
-
-
-Add:
-
-omdb.api.key=YOUR_API_KEY_HERE
-
-
-Get your free API key from:
-https://www.omdbapi.com
-
-3. Build the Project
-mvn clean install
-
-4. Run the Application
-mvn spring-boot:run
