@@ -47,5 +47,5 @@ omdb-movie-explorer/
 ├── mvnw
 ├── mvnw.cmd
 ├── README.md
-└── HELP.md ```
+└── HELP.md 
 
