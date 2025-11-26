@@ -4,8 +4,8 @@ A Spring Boot application that allows users to search and explore movie details 
 
 📌 Overview
 
-OMDB Movie Explorer is a clean and simple Spring Boot application that fetches movie information—such as title, year, genre, cast, plot, and ratings—from the OMDb API based on user input.
-The project demonstrates API integration, MVC architecture, and a clean UI for movie search and display.
+OMDB Movie Explorer is a simple and clean Spring Boot application that fetches movie information—such as title, year, genre, cast, plot, and ratings—from the OMDb API based on user input.
+This project demonstrates API integration, MVC architecture, and a clean UI for movie search and display.
 
 🚀 Features
 
@@ -19,15 +19,18 @@ Modular MVC architecture
 
 Fast and lightweight Spring Boot application
 
-Maven-based project for easy build and run
+Maven-based project with easy build and run
 
 Clean and structured codebase
 
 🛠️ Tech Stack
 
 Backend: Java 17+, Spring Boot
+
 Build Tool: Maven
-View Layer: HTML / Thymeleaf (or JSP based on your project)
+
+View Layer: HTML / Thymeleaf (or JSP)
+
 External API: OMDb REST API
 
 📂 Project Structure
@@ -46,7 +49,6 @@ omdb-movie-explorer/
 │── README.md
 │── HELP.md
 
-
 ⚙️ How to Run the Application
 1. Clone the Repository
 git clone https://github.com/your-username/omdb-movie-explorer.git
@@ -55,17 +57,20 @@ cd omdb-movie-explorer
 2. Add Your OMDb API Key
 
 Open:
+
 src/main/resources/application.properties
 
-Add:  omdb.api.key=YOUR_API_KEY_HERE
-      Get your free API key from:
-       https://www.omdbapi.com
+
+Add:
+
+omdb.api.key=YOUR_API_KEY_HERE
+
+
+Get your free API key from:
+https://www.omdbapi.com
 
 3. Build the Project
 mvn clean install
 
 4. Run the Application
 mvn spring-boot:run
-
-5. Open in Browser
-http://localhost:8080
