@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Details</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* BACKGROUND (Blurred Poster) */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0E0F11;
+            color: #fff;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .bg-blur {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(25px) brightness(0.4);
+            z-index: -1;
+        }
+
+        /* TOP NAVBAR */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0,168,225,0.4);
+        }
+
+        .top-nav a {
+            color: #00A8E1;
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 2px solid #00A8E1;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            background: #00A8E1;
+            color: #0E0F11;
+        }
+
+        /* DETAILS MAIN CARD */
+        .details-card {
+            max-width: 900px;
+            margin: 80px auto;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(0,168,225,0.3);
+        }
+
+        .movie-header {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .movie-header img {
+            width: 260px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,168,225,0.6);
+        }
+
+        .movie-header h2 {
+            font-size: 35px;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(0,168,225,0.7);
+        }
+
+        .movie-header p {
+            font-size: 17px;
+            color: #cfd3d6;
+            margin-top: 5px;
+        }
+
+        /* FAVORITE BUTTON */
+        .fav-btn {
+            margin-top: 10px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: #00A8E1;
+            color: #0E0F11;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .fav-btn:hover {
+            background: #1dd6ff;
+        }
+
+        /* PLOT BOX */
+        .plot-box {
+            margin-top: 25px;
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-left: 4px solid #00A8E1;
+            border-radius: 10px;
+        }
+
+        .plot-box h3 {
+            font-size: 24px;
+            color: #00A8E1;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            margin-top: 25px;
+            display: inline-block;
+            padding: 12px 20px;
+            background: #00A8E1;
+            color: #0E0F11;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #1dd6ff;
+        }
+
+        @media (max-width: 768px) {
+            .movie-header {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .movie-header img {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Blur Image -->
+    <div id="bg-blur" class="bg-blur"></div>
+
+    <!-- ⭐ TOP NAVIGATION -->
+    <div class="top-nav">
+        <a href="favorites.html">⭐ Favorites</a>
+    </div>
+
+    <!-- Main Card -->
+    <div class="details-card">
+        <div id="details-content"></div>
+        <a href="index.html" class="back-btn">⬅ Back</a>
+    </div>
+
+    <script>
+        function getMovieIdFromUrl() {
+            return new URLSearchParams(window.location.search).get("id");
+        }
+
+        function loadMovieDetails() {
+            let movieId = getMovieIdFromUrl();
+
+            fetch(`http://localhost:8080/api/movies/details?id=${movieId}`)
+                .then(res => res.json())
+                .then(movie => displayDetails(movie));
+        }
+
+        function displayDetails(movie) {
+            // Set blurred background
+            document.getElementById("bg-blur").style.backgroundImage =
+                `url('${movie.poster}')`;
+
+            document.getElementById("details-content").innerHTML = `
+                <div class="movie-header">
+                    <img src="${movie.poster}" alt="Poster">
+
+                    <div>
+                        <h2>${movie.title}</h2>
+
+                        <button class="fav-btn"
+                            onclick="addToFavorites('${movie.title}','${movie.poster}','${movie.year}','${movie.director}','${movie.plot}')">
+                            ❤️ Add to Favorites
+                        </button>
+
+                        <p><b>Year:</b> ${movie.year}</p>
+                        <p><b>Genre:</b> ${movie.genre}</p>
+                        <p><b>Director:</b> ${movie.director}</p>
+                        <p><b>Actors:</b> ${movie.actors}</p>
+                        <p><b>IMDb Rating:</b> ⭐ ${movie.imdbRating}</p>
+                    </div>
+                </div>
+
+                <div class="plot-box">
+                    <h3>Plot</h3>
+                    <p>${movie.plot}</p>
+                </div>
+            `;
+        }
+
+        function addToFavorites(title, poster, year, director, plot) {
+            let fav = JSON.parse(localStorage.getItem("favorites")) || [];
+
+            if (fav.some(m => m.title === title)) {
+                alert("Already in Favorites!");
+                return;
+            }
+
+            fav.push({ title, poster, year, director, plot });
+            localStorage.setItem("favorites", JSON.stringify(fav));
+
+            alert("Added to Favorites ❤️");
+        }
+
+        loadMovieDetails();
+    </script>
+
+</body>
+</html>

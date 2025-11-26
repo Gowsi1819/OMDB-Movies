@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Movie Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">OMDB Movies</h1>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search movies..." onkeypress="if(event.key==='Enter') searchMovies()">
+            <button onclick="searchMovies()">Search</button>
+            <a href="favorites.html" class="favorites-link">⭐ Favorites</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="results" class="results-grid">
+            <div class="welcome">
+                <h2>OMDB Video</h2>
+                <p>Your world of entertainment, smarter</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
