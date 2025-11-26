@@ -34,7 +34,7 @@ View Layer: HTML / Thymeleaf (or JSP)
 External API: OMDb REST API
 
 Project Structure
-omdb-movie-explorer/
+```omdb-movie-explorer/
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -47,7 +47,7 @@ omdb-movie-explorer/
 ├── mvnw
 ├── mvnw.cmd
 ├── README.md
-└── HELP.md
+└── HELP.md ```
 
 
 ⚙️ How to Run the Application
