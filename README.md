@@ -65,8 +65,8 @@ mvn spring-boot:run
 
 
 
-
-```Project Structure
+Project Structure
+```
 omdb-movie-explorer/
 ├── src/
 │   ├── main/
